@@ -2,11 +2,14 @@ const express = require("express");
 const graphqlHTTP = require("express-graphql");
 const mongoose = require("mongoose");
 const cors = require("cors");
+const path = require('path')
 require("dotenv").config();
 
 const schema = require("./schema");
 
 const app = express();
+
+app.use(cors());
 
 mongoose.connect(process.env.MONGO_URL);
 mongoose.connection.once("open", () => {
@@ -27,5 +30,5 @@ app.use("/ping", cors(), (_, res) => {
 });
 
 app.listen(process.env.PORT, function () {
-  console.log(`Listening on port ${process.env.PORT}`);
+  console.log(`Listening on port.. ${process.env.PORT}`);
 });

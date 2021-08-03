@@ -1,28 +1,28 @@
-const { GraphQLList, GraphQLID, GraphQLString } = require("graphql");
-const { SheetType } = require("../schema/types");
-const Day = require("../models/day");
+const { GraphQLID } = require("graphql");
+const { TodoType } = require("../schema/types");
+const Todo = require("../models/todo");
 const getUserId = require("../utils/getUserId");
 
 module.exports = {
-  sheet: {
-    type: SheetType,
+  todo: {
+    type: TodoType,
     args: {
       id: { type: GraphQLID },
     },
     async resolve(_, args, req) {
       const userId = getUserId(req);
-      const sheet = await Day.findById(args.id);
-      if (!sheet) {
+      const todo = await Todo.findById(args.id);
+      if (!todo) {
         return {
           error: "Not Found!",
         };
       } else {
-        if (String(sheet.userId) !== String(userId)) {
+        if (String(todo.userId) !== String(userId)) {
           return {
             error: "Not yours!",
           };
         } else {
-          return sheet;
+          return todo;
         }
       }
     },

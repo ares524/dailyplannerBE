@@ -20,6 +20,7 @@
     "graphql-tools": "^6.0.5",
     "jsonwebtoken": "^8.5.1",
     "mongoose": "^5.9.11",
-    "nodemon": "^2.0.3"
+    "nodemon": "^2.0.3",
+    "omit-deep": "^0.3.0"
   }
 }
